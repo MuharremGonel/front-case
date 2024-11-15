@@ -22,7 +22,7 @@ const Home: React.FC = async () => {
     return (
       <div className="flex columns-5 justify-between max-w-7xl py-4 mx-auto flex-wrap">
         {categoriesData.map((category) => (
-          <div key={category.id} className="">
+          <div key={category.slug} className="">
             <Link href={`/products/${category.slug}`}>
               <div className="block w-56 h-24 text-center items-center my-6 rounded-lg bg-white p-6 text-surface border hover:shadow-lg">
                 <h5 className="mb-2 text-xl font-medium leading-tight">
