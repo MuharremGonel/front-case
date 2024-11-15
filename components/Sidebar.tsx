@@ -3,9 +3,10 @@ import Accordion from './Accordion'
 
 interface categoryParams {
     params: {
-        category: string;
+      category: string;
     };
-}
+  }
+
 const Sidebar: React.FC<categoryParams> = async ({ params }) => {
     const { category } = params;
     return (
@@ -14,4 +15,5 @@ const Sidebar: React.FC<categoryParams> = async ({ params }) => {
         </div>
     )
 }
+
 export default Sidebar

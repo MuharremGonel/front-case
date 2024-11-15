@@ -2,10 +2,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { IoSearchSharp } from "react-icons/io5";
+
 interface Product {
   id: string;
   title: string;
 }
+
 const SearchBar: React.FC = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,20 +15,20 @@ const SearchBar: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
+
   const fetchProducts = useCallback(async () => {
     if (searchQuery.length < 3) {
       setResults([]);
       setIsDropdownOpen(false);
-
       return;
     }
 
     setLoading(true);
     setError("");
-
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/products/search?q=${encodeURIComponent(searchQuery)}`
@@ -46,6 +48,7 @@ const SearchBar: React.FC = () => {
     const debounceFetch = setTimeout(fetchProducts, 300);
     return () => clearTimeout(debounceFetch);
   }, [fetchProducts]);
+
   const handleSelect = (title: string) => {
     setSearchQuery("");
     router.push(`/search/${title}`);
@@ -82,4 +85,5 @@ const SearchBar: React.FC = () => {
     </div>
   );
 };
+
 export default SearchBar;

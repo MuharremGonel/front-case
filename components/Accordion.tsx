@@ -13,8 +13,8 @@ interface categoryProps {
     fetchPath: string;
 }
 
-const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
 
+const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
     const [brands, setBrands] = useState([]);
     const [price, setPrice] = useState([]);
     const [minValue, setMinValue] = useState(0);
@@ -40,6 +40,7 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
                     const price = data.products.map((product) => product.price).filter(Boolean);
                     const minPrice = Math.min(...price);
                     const maxPrice = Math.max(...price);
+
                     setMinValue(minValue);
                     setMaxValue(maxValue);
                     setRange([minPrice, maxPrice]);
@@ -49,6 +50,7 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
             })
             .catch((error) => console.error("Veri çekme hatası:", error));
     }, [fetchPath]);
+
 
     useEffect(() => {
         // Rating verilerini çek
@@ -71,11 +73,9 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
             .catch((error) => console.error("Veri çekme hatası:", error));
     }, []);
 
-
     const handleSliderChange = (value) => {
         setRange(value);
     };
-
 
     return (
         <>
@@ -124,7 +124,6 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
                         <FaChevronDown className="AccordionChevron" />
                     </AccordionTrigger>
                     <AccordionContent className="mt-5">
-
                         <Slider.Root
                             className="relative flex h-5 w-full pr-5 touch-none select-none items-center"
                             value={range}
@@ -153,7 +152,6 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
                                 </div>
                             ))}
 
-
                             <Slider.Thumb
                                 className="block size-5 rounded-[10px] shadow-[0_2px_10px] bg-blue-600 shadow-black hover:bg-blue-600 focus:shadow-[0_0_0_5px] focus:shadow-blue-300 focus:outline-none"
                                 aria-label="Maksimum Fiyat"
@@ -163,12 +161,9 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
                             <div>{minValue}</div>
                             <div>{maxValue}</div>
                         </div>
-
                     </AccordionContent>
                 </Accordion.Item>
             </Accordion.Root>
-
-
 
 
             <Accordion.Root className="AccordionRoot" type="single" collapsible>
@@ -192,3 +187,5 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
         </>
     )
 }
+
+export default Accordions

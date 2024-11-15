@@ -6,10 +6,12 @@ import { FaLinkedin } from "react-icons/fa6";
 import * as Accordion from "@radix-ui/react-accordion";
 import { AccordionTrigger, AccordionContent } from '@radix-ui/react-accordion';
 import { FaChevronDown } from "react-icons/fa";
+
 type FooterSection = {
   title: string;
   items: string[];
 };
+
 export const footerSections: FooterSection[] = [
   {
     title: "Support",
@@ -42,10 +44,12 @@ export const footerSections: FooterSection[] = [
     ],
   },
 ];
+
 type AccordionSection = {
   title: string;
   items: string[];
 };
+
 export const accordionSections: AccordionSection[] = [
   {
     title: "Treat Yourself",
@@ -98,6 +102,7 @@ export const accordionSections: AccordionSection[] = [
     ],
   },
 ];
+
 export const footerLinks: string[] = [
   "© 2024 Brand, Inc. All Rights Reserved.",
   "Terms and Conditions",
@@ -108,11 +113,12 @@ export const footerLinks: string[] = [
   "Customer Support",
   "Licenses",
 ];
+
 function Footer() {
   return (
     <>
       <div className="bg-[#edeff1]">
-        <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row  justify-between items-center py-10">
+        <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row justify-between items-center py-10">
           <div className="text-2xl text-blue-700 font-bold">Frontend Task</div>
           <div className="flex flex-col text-center lg:text-start">
             <div className="text-lg font-bold">Follow Us</div>
@@ -124,7 +130,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="max-w-7xl border-t pt-5 mx-auto w-full flex justify-between items-center py-10">
+        <div className="max-w-7xl border-t pt-5 mx-auto w-full flex  justify-between items-center py-10">
           <div className="flex flex-col lg:flex-row w-full text-center gap-y-5 lg:justify-between">
             {footerSections.map((section, index) => (
               <div key={index}>
@@ -135,7 +141,9 @@ function Footer() {
                       {item}
                     </li>
                   ))}
+
                 </ul>
+
               </div>
             ))}
             <div className="flex flex-col w-full lg:w-1/4">
@@ -143,7 +151,6 @@ function Footer() {
               <Accordion.Root
                 className="AccordionRoot"
                 type="single"
-                defaultValue="item-1"
                 collapsible
               >
                 {accordionSections.map((section, index) => (
@@ -180,4 +187,5 @@ function Footer() {
     </>
   )
 }
+
 export default Footer

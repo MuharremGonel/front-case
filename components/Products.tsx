@@ -13,21 +13,19 @@ const Products: React.FC<ProductsProps> = ({ fetchPath }) => {
   const [skip, setSkip] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [totalProducts, setTotalProducts] = useState(0);
-
+  const [totalProducts, setTotalProducts] = useState(0); 
 
   const limit = 6;
-  const loadMoreButtonRef = useRef<HTMLButtonElement>(null);
-
+  const loadMoreButtonRef = useRef<HTMLButtonElement>(null); 
 
   const fetchProducts = useCallback(async () => {
-    if (isLoading || !hasMore) return;
-
+    if (isLoading || !hasMore) return; 
 
     setIsLoading(true);
 
     try {
       const response = await fetch(`${fetchPath}limit=${limit}&skip=${skip}`);
+
       const data = await response.json();
       const newProducts = data.products;
       setTotalProducts(data.total);
@@ -39,11 +37,8 @@ const Products: React.FC<ProductsProps> = ({ fetchPath }) => {
       console.error("Error fetching products:", error);
     }
 
-
     setIsLoading(false);
   }, [skip, isLoading, hasMore]);
-
-
 
   const observerCallback = (entries: IntersectionObserverEntry[]) => {
     const entry = entries[0];
@@ -53,8 +48,8 @@ const Products: React.FC<ProductsProps> = ({ fetchPath }) => {
   };
 
   const observerOptions = {
-    rootMargin: "100px",
-    threshold: 1.0,
+    rootMargin: "100px", 
+    threshold: 1.0, 
   };
 
   useEffect(() => {
@@ -69,19 +64,20 @@ const Products: React.FC<ProductsProps> = ({ fetchPath }) => {
 
     return () => {
       if (loadMoreButtonRef.current) {
-        observer.unobserve(loadMoreButtonRef.current);
+        observer.unobserve(loadMoreButtonRef.current); 
       }
     };
-  }, [isLoading]); // Re-run observer setup when `isLoading` changes
+  }, [isLoading]); 
 
   const generateRandomNumber = () => Math.floor(Math.random() * 1000);
+
   return (
     <>
       <div className="max-w-7xl flex flex-wrap gap-5 gap-y-2">
         {productItems.map((product) => (
           <Link key={`${product.id}-${generateRandomNumber()}`} href={`/product/${product.id}`}>
             <ProductCard
-              product={product}
+              product={product} 
             />
           </Link>
         ))}
@@ -91,8 +87,9 @@ const Products: React.FC<ProductsProps> = ({ fetchPath }) => {
           <button
             onClick={fetchProducts}
             disabled={isLoading}
-            className={`px-4 py-2 bg-blue-500 text-white rounded-md ${isLoading ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+            className={`px-4 py-2 bg-blue-500 text-white rounded-md ${
+              isLoading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
             {isLoading ? "Loading..." : "Load More"}
           </button>

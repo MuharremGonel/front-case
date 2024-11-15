@@ -2,23 +2,38 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
+import Head from "next/head";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/zoom";
 import { FreeMode, Navigation, Thumbs, Zoom } from "swiper/modules";
+
 import type { Swiper as SwiperType } from "swiper";
 
 interface ProductData {
     title: string;
     images: string[];
 }
+
 export default function ImageGallery({ productData }: { productData: ProductData }) {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
     const thumbnailImages = productData.images.length > 0 ? productData.images : [...productData.images, productData.images[0]];
+
     return (
         <>
+            <Head>
+                {thumbnailImages.slice(0, 3).map((image, index) => (
+                    <link
+                        key={index}
+                        rel="preload"
+                        as="image"
+                        href={image}
+                    />
+                ))}
+            </Head>
+
             <Swiper
                 loop={true}
                 spaceBetween={10}
@@ -37,12 +52,12 @@ export default function ImageGallery({ productData }: { productData: ProductData
                                 height={2160}
                                 src={image}
                                 alt={`${productData.title} - ${index + 1}`}
-                                loading="lazy"
                             />
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
+            
             <Swiper
                 loop={true}
                 spaceBetween={10}
@@ -61,11 +76,9 @@ export default function ImageGallery({ productData }: { productData: ProductData
                             src={image}
                             alt={`${productData.title} Thumbnail - ${index + 1}`}
                             className="cursor-pointer h-36 w-36 object-contain"
-                            loading="lazy"
                         />
                     </SwiperSlide>
                 ))}
-                <SwiperSlide></SwiperSlide>
             </Swiper>
         </>
     );
