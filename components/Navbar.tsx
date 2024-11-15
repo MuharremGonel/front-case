@@ -6,7 +6,6 @@ import { GrNotification } from "react-icons/gr";
 import { IoMdMenu } from "react-icons/io";
 import { FaChevronDown } from "react-icons/fa";
 import SearchBar from "./SearchBar";
-import { FaRegHeart } from "react-icons/fa6";
 import Link from "next/link";
 
 
@@ -19,20 +18,6 @@ interface Category {
 
 const Navbar = () => {
     const [categories, setCategories] = useState<Category[]>([]);
-
-    useEffect(() => {
-        // Fetch the categories data
-        const fetchCategories = async () => {
-            try {
-                const response = await fetch('https://dummyjson.com/products/categories');
-                const data: Category[] = await response.json();
-                setCategories(data.slice(0, 9));
-            } catch (error) {
-                console.error("Error fetching categories:", error);
-            }
-        };
-        fetchCategories();
-    }, []);
 
     return (
         <>

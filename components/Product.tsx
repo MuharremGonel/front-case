@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import ProductCard from "./ProductCard";
-import { Product } from "../types/types";
+import { Product } from "@/types/types";
 const Products = () => {
     const [productItems, setProductItems] = useState<Product[]>([]);
     const [skip, setSkip] = useState(0);
@@ -53,9 +53,7 @@ const Products = () => {
     return (
         <>
             <div className="max-w-7xl flex flex-wrap gap-5 gap-y-2">
-                {productItems.map((product) => (
-                    <ProductCard key={`${product.id}-${generateRandomNumber()}`} product={product} />
-                ))}
+                
             </div>
             <div className="text-center mt-4">
                 <button
