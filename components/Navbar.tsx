@@ -1,13 +1,13 @@
 "use client";
-import React from "react";
-import { useState, useEffect } from 'react';
+
+import React, { useState, useEffect } from "react";
+import { FaRegHeart } from "react-icons/fa6";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GrNotification } from "react-icons/gr";
-import { IoMdMenu } from "react-icons/io";
 import { FaChevronDown } from "react-icons/fa";
+import { IoMdMenu } from "react-icons/io";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
-
 
 interface Category {
     slug: string;
@@ -15,14 +15,29 @@ interface Category {
     url: string;
 }
 
-
 const Navbar = () => {
     const [categories, setCategories] = useState<Category[]>([]);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/products/categories`
+                );
+                const data: Category[] = await response.json();
+                setCategories(data.slice(0, 9));
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     return (
         <>
             <div className="py-5 border-b shadow-xl px-5">
-                <div className="flex md:justify-between justify-center gap-5 md:gap-0 items-center w-full max-w-7xl mx-auto  md:px-0">
+                <div className="flex md:justify-between justify-center gap-5 md:gap-0 items-center w-full max-w-7xl mx-auto md:px-0">
                     <div className="md:text-2xl text-lg text-blue-700 font-bold">
                         <Link href="/">Frontend Task</Link>
                     </div>
@@ -66,13 +81,17 @@ const Navbar = () => {
                 <div className="max-w-7xl mx-auto pt-5 hidden md:block">
                     <ul className="flex flex-wrap gap-14 gap-y-5 justify-center">
                         {categories.map((category) => (
-                            <Link className="hover:text-blue-600 hover:underline underline-offset-2" href={`/products/category/${category.slug}`} key={category.slug}>
+                            <Link
+                                className="hover:text-blue-600 hover:underline underline-offset-2"
+                                href={`/products/category/${category.slug}`}
+                                key={category.slug}
+                            >
                                 {category.name}
                             </Link>
                         ))}
                     </ul>
                 </div>
-            </div >
+            </div>
         </>
     );
 };
