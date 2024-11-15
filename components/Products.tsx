@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import ProductCard from "./ProductCard";
 import { Product } from "../types/types";
+import Link from "next/link";
 
 const Products = () => {
   const [productItems, setProductItems] = useState<Product[]>([]);
@@ -80,11 +81,12 @@ const Products = () => {
   return (
     <>
       <div className="max-w-7xl flex flex-wrap gap-5 gap-y-2">
-        {productItems.map((product) => (
+      {productItems.map((product) => (
+          <Link key={`${product.id}-${generateRandomNumber()}`} href={`/deals/${product.id}`}>
           <ProductCard
-            key={`${product.id}-${generateRandomNumber()}`}
             product={product}
           />
+        </Link>
         ))}
       </div>
       {productItems.length < totalProducts && (
