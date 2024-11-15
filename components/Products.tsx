@@ -1,307 +1,91 @@
-import React from 'react'
-import { Box, Card, Inset, Text, Strong } from '@radix-ui/themes'
-import { CiHeart } from "react-icons/ci";
-type Dimensions = {
-    width: number;
-    height: number;
-    depth: number;
-};
-type Review = {
-    rating: number;
-    comment: string;
-    date: string;
-    reviewerName: string;
-    reviewerEmail: string;
-};
-type Meta = {
-    createdAt: string;
-    updatedAt: string;
-    barcode: string;
-    qrCode: string;
-};
-type Product = {
-    id: number;
-    title: string;
-    description: string;
-    category: string;
-    price: number;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    tags: string[];
-    brand: string;
-    sku: string;
-    weight: number;
-    dimensions: Dimensions;
-    warrantyInformation: string;
-    shippingInformation: string;
-    availabilityStatus: string;
-    reviews: Review[];
-    returnPolicy: string;
-    minimumOrderQuantity: number;
-    meta: Meta;
-    images: string[];
-    thumbnail: string;
-};
-const productItems: Product[] = [
-    {
-        id: 1,
-        title: "Essence Mascara Lash Princess",
-        description:
-            "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
-        category: "beauty",
-        price: 9.99,
-        discountPercentage: 7.17,
-        rating: 4.94,
-        stock: 5,
-        tags: ["beauty", "mascara"],
-        brand: "Essence",
-        sku: "RCH45Q1A",
-        weight: 2,
-        dimensions: { width: 23.17, height: 14.43, depth: 28.01 },
-        warrantyInformation: "1 month warranty",
-        shippingInformation: "Ships in 1 month",
-        availabilityStatus: "Low Stock",
-        reviews: [
-            {
-                rating: 2,
-                comment: "Very unhappy with my purchase!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "John Doe",
-                reviewerEmail: "john.doe@x.dummyjson.com",
-            },
-            {
-                rating: 2,
-                comment: "Not as described!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Nolan Gonzalez",
-                reviewerEmail: "nolan.gonzalez@x.dummyjson.com",
-            },
-            {
-                rating: 5,
-                comment: "Very satisfied!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Scarlett Wright",
-                reviewerEmail: "scarlett.wright@x.dummyjson.com",
-            },
-        ],
-        returnPolicy: "30 days return policy",
-        minimumOrderQuantity: 24,
-        meta: {
-            createdAt: "2024-05-23T08:56:21.618Z",
-            updatedAt: "2024-05-23T08:56:21.618Z",
-            barcode: "9164035109868",
-            qrCode: "https://assets.dummyjson.com/public/qr-code.png",
-        },
-        images: [
-            "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png",
-        ],
-        thumbnail:
-            "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
-    },
-    {
-        id: 2,
-        title: "Eyeshadow Palette with Mirror",
-        description:
-            "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
-        category: "beauty",
-        price: 19.99,
-        discountPercentage: 5.5,
-        rating: 3.28,
-        stock: 44,
-        tags: ["beauty", "eyeshadow"],
-        brand: "Glamour Beauty",
-        sku: "MVCFH27F",
-        weight: 3,
-        dimensions: { width: 12.42, height: 8.63, depth: 29.13 },
-        warrantyInformation: "1 year warranty",
-        shippingInformation: "Ships in 2 weeks",
-        availabilityStatus: "In Stock",
-        reviews: [
-            {
-                rating: 4,
-                comment: "Very satisfied!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Liam Garcia",
-                reviewerEmail: "liam.garcia@x.dummyjson.com",
-            },
-            {
-                rating: 1,
-                comment: "Very disappointed!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Nora Russell",
-                reviewerEmail: "nora.russell@x.dummyjson.com",
-            },
-            {
-                rating: 5,
-                comment: "Highly impressed!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Elena Baker",
-                reviewerEmail: "elena.baker@x.dummyjson.com",
-            },
-        ],
-        returnPolicy: "30 days return policy",
-        minimumOrderQuantity: 32,
-        meta: {
-            createdAt: "2024-05-23T08:56:21.618Z",
-            updatedAt: "2024-05-23T08:56:21.618Z",
-            barcode: "2817839095220",
-            qrCode: "https://assets.dummyjson.com/public/qr-code.png",
-        },
-        images: [
-            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png",
-        ],
-        thumbnail:
-            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-    },
-    {
-        id: 3,
-        title: "Eyeshadow Palette with Mirror",
-        description:
-            "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
-        category: "beauty",
-        price: 19.99,
-        discountPercentage: 5.5,
-        rating: 3.28,
-        stock: 44,
-        tags: ["beauty", "eyeshadow"],
-        brand: "Glamour Beauty",
-        sku: "MVCFH27F",
-        weight: 3,
-        dimensions: { width: 12.42, height: 8.63, depth: 29.13 },
-        warrantyInformation: "1 year warranty",
-        shippingInformation: "Ships in 2 weeks",
-        availabilityStatus: "In Stock",
-        reviews: [
-            {
-                rating: 4,
-                comment: "Very satisfied!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Liam Garcia",
-                reviewerEmail: "liam.garcia@x.dummyjson.com",
-            },
-            {
-                rating: 1,
-                comment: "Very disappointed!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Nora Russell",
-                reviewerEmail: "nora.russell@x.dummyjson.com",
-            },
-            {
-                rating: 5,
-                comment: "Highly impressed!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Elena Baker",
-                reviewerEmail: "elena.baker@x.dummyjson.com",
-            },
-        ],
-        returnPolicy: "30 days return policy",
-        minimumOrderQuantity: 32,
-        meta: {
-            createdAt: "2024-05-23T08:56:21.618Z",
-            updatedAt: "2024-05-23T08:56:21.618Z",
-            barcode: "2817839095220",
-            qrCode: "https://assets.dummyjson.com/public/qr-code.png",
-        },
-        images: [
-            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png",
-        ],
-        thumbnail:
-            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-    },
-    {
-        id: 4,
-        title: "Eyeshadow Palette with Mirror",
-        description:
-            "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
-        category: "beauty",
-        price: 19.99,
-        discountPercentage: 5.5,
-        rating: 3.28,
-        stock: 44,
-        tags: ["beauty", "eyeshadow"],
-        brand: "Glamour Beauty",
-        sku: "MVCFH27F",
-        weight: 3,
-        dimensions: { width: 12.42, height: 8.63, depth: 29.13 },
-        warrantyInformation: "1 year warranty",
-        shippingInformation: "Ships in 2 weeks",
-        availabilityStatus: "In Stock",
-        reviews: [
-            {
-                rating: 4,
-                comment: "Very satisfied!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Liam Garcia",
-                reviewerEmail: "liam.garcia@x.dummyjson.com",
-            },
-            {
-                rating: 1,
-                comment: "Very disappointed!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Nora Russell",
-                reviewerEmail: "nora.russell@x.dummyjson.com",
-            },
-            {
-                rating: 5,
-                comment: "Highly impressed!",
-                date: "2024-05-23T08:56:21.618Z",
-                reviewerName: "Elena Baker",
-                reviewerEmail: "elena.baker@x.dummyjson.com",
-            },
-        ],
-        returnPolicy: "30 days return policy",
-        minimumOrderQuantity: 32,
-        meta: {
-            createdAt: "2024-05-23T08:56:21.618Z",
-            updatedAt: "2024-05-23T08:56:21.618Z",
-            barcode: "2817839095220",
-            qrCode: "https://assets.dummyjson.com/public/qr-code.png",
-        },
-        images: [
-            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png",
-        ],
-        thumbnail:
-            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
-    },
-];
-function Products() {
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import ProductCard from "./ProductCard";
+import { Product } from "../types/types";
+
+const Products = () => {
+    const [productItems, setProductItems] = useState<Product[]>([]);
+    const [skip, setSkip] = useState(0); // Keep track of the skip value for pagination
+    const [hasMore, setHasMore] = useState(true); // Flag to check if there are more products to load
+    const [isLoading, setIsLoading] = useState(false); // Loading state
+    const limit = 6; // Limit per request
+    const loadMoreButtonRef = useRef<HTMLButtonElement>(null); // Reference for the "Load More" button
+
+
+    const fetchProducts = useCallback(async () => {
+        if (isLoading || !hasMore) return; // Prevent multiple fetches if already loading or no more products
+
+
+        setIsLoading(true);
+
+        try {
+            const response = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`);
+            const data = await response.json();
+            const newProducts = data.products;
+            setProductItems((prevProducts) => [...prevProducts, ...newProducts]);
+            setHasMore(newProducts.length === limit); // If fewer than `limit`, no more products
+            setSkip((prevSkip) => prevSkip + limit); // Increment skip by the limit to fetch the next set
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+        setIsLoading(false);
+        console.log("skip:", skip);
+    }, [skip, isLoading, hasMore]);
+    // Log skip value after it has been updated
+    useEffect(() => {
+        console.log("skip:", skip);
+    }, [skip]); // Trigger the log when the `skip` state changes
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+        const entry = entries[0];
+        if (entry.isIntersecting && !isLoading) {
+            fetchProducts(); // Trigger fetch when the "Load More" button is visible in the viewport
+        }
+    };
+
+    const observerOptions = {
+        rootMargin: "100px", // Trigger when near the bottom of the page
+        threshold: 1.0, // Trigger when fully in view
+    };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        if (loadMoreButtonRef.current) {
+            observer.observe(loadMoreButtonRef.current); // Start observing the "Load More" button
+        }
+
+        return () => {
+            if (loadMoreButtonRef.current) {
+                observer.unobserve(loadMoreButtonRef.current); // Cleanup observer when component unmounts
+            }
+        };
+    }, [isLoading]); // Re-run observer setup when `isLoading` changes
+
+    const generateRandomNumber = () => Math.floor(Math.random() * 1000); // Random number to ensure unique keys
+
     return (
         <>
-            <div className="max-w-7xl flex flex-wrap gap-5 gap-y-2">
-                {productItems.map((product) => (
-                    <Box key={product.id} maxWidth="300px" className="mb-4">
-                        <Card size="2">
-                            <Inset clip="padding-box" side="top" pb="current" className="relative">
-                                <img
-                                    src={product.thumbnail}
-                                    alt={product.title}
-                                    style={{
-                                        display: "block",
-                                        objectFit: "cover",
-                                        width: "100%",
-                                        height: 300,
-                                    }}
-                                />
-                                <CiHeart size={24} className="h-10 w-10 bg-white rounded-full absolute top-5 right-5" />
-                            </Inset>
-                            <Text as="p" size="3" className="p-4">
-                                <div className="font-bold text-xl">{product.title}</div>
-                                <div className="text-xs font-bold">{product.brand}</div>
-                                <div className="text-sm font-semibold text-gray-600">
-                                    ${product.price.toFixed(2)}
-                                    {product.discountPercentage > 0 && (
-                                        <span className="ml-2 text-red-500">
-                                            -{product.discountPercentage}%
-                                        </span>
-                                    )}
-                                </div>
-                            </Text>
-                        </Card>
-                    </Box>
-                ))}
-            </div>
+          <div className="max-w-7xl flex flex-wrap gap-5 gap-y-2">
+            {productItems.map((product) => (
+              <ProductCard key={`${product.id}-${generateRandomNumber()}`} product={product} />
+            ))}
+          </div>
+    
+          {/* Load more button */}
+          <div className="text-center mt-4">
+            <button
+              onClick={fetchProducts}
+              disabled={isLoading}
+              className={`px-4 py-2 bg-blue-500 text-white rounded-md ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
+              {isLoading ? "Loading..." : "Load More"}
+            </button>
+          </div>
+    
+          {/* Invisible element observed by IntersectionObserver */}
+          <button ref={loadMoreButtonRef} className="invisible"></button>
         </>
-    )
-}
+      );
+    };
+
 export default Products
