@@ -29,7 +29,7 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
                 const uniqueBrands = [...new Set(data.products.map((product) => product.brand).filter(Boolean))];
                 setBrands(uniqueBrands);
             })
-            .catch((error) => console.error("Veri çekme hatası:", error));
+            .catch((error) => console.error("Data fetching error:", error));
     }, [fetchPath]);
 
     useEffect(() => {
@@ -45,10 +45,10 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
                     setMaxValue(maxValue);
                     setRange([minPrice, maxPrice]);
                 } else {
-                    console.error("Beklenmedik veri formatı:", data);
+                    console.error("Unexpected data format::", data);
                 }
             })
-            .catch((error) => console.error("Veri çekme hatası:", error));
+            .catch((error) => console.error("Data fetching error:", error));
     }, [fetchPath]);
 
 
@@ -67,10 +67,10 @@ const Accordions: React.FC<categoryProps> = ({ fetchPath }) => {
                     });
                     setRatingsCount(counts);
                 } else {
-                    console.error("Beklenmedik veri formatı:", data);
+                    console.error("Unexpected data format:", data);
                 }
             })
-            .catch((error) => console.error("Veri çekme hatası:", error));
+            .catch((error) => console.error("Data fetching error:", error));
     }, []);
 
     const handleSliderChange = (value) => {
