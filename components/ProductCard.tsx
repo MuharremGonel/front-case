@@ -13,14 +13,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <>
       <Box key={product.id} maxWidth="300px" className="mb-4">
-        <Card className="relative h-full w-full min-w-[300px] hover:shadow-lg" size="2">
+        <Card className="relative h-[520px] w-full min-w-[300px] hover:shadow-lg flex flex-col" size="2">
           <Image
             src={product.thumbnail}
             alt={product.title}
             layout="responsive"
             width={300}
-            height={300}
-            objectFit="cover"
+            height={350}
+            className="object-cover w-full h-[350px]"
             loading="lazy"
           />
           <CiHeart
