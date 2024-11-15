@@ -2,15 +2,18 @@ import React from "react";
 import { Box, Card, Text } from "@radix-ui/themes";
 import { CiHeart } from "react-icons/ci";
 import Image from "next/image";
-import { Product } from "../types/types";
+import { Product } from "@/types/types";
+
+
 type ProductCardProps = {
   product: Product;
 };
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+
   return (
     <>
       <Box key={product.id} maxWidth="300px" className="mb-4">
-        <Card size="2">
+        <Card className="relative h-full w-full min-w-[300px] hover:shadow-lg" size="2">
           <Image
             src={product.thumbnail}
             alt={product.title}
@@ -18,7 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             width={300}
             height={300}
             objectFit="cover"
-            loading="lazy" // Lazy loading the image
+            loading="lazy"
           />
           <CiHeart
             size={24}

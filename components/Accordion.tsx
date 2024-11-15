@@ -1,9 +1,8 @@
-"use client"
 import React from 'react'
 import * as Accordion from "@radix-ui/react-accordion";
 import { AccordionTrigger, AccordionContent } from '@radix-ui/react-accordion';
 import { FaChevronDown } from "react-icons/fa";
-import { useState } from "react";
+
 function Accordions() {
     
     return (
@@ -86,4 +85,4 @@ function Accordions() {
         </>
     )
 }
-export default Accordions
+export default Accordions;

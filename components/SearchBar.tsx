@@ -20,10 +20,13 @@ const SearchBar: React.FC = () => {
     if (searchQuery.length < 3) {
       setResults([]);
       setIsDropdownOpen(false);
+
       return;
     }
+
     setLoading(true);
     setError("");
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/products/search?q=${encodeURIComponent(searchQuery)}`
@@ -38,15 +41,17 @@ const SearchBar: React.FC = () => {
       setLoading(false);
     }
   }, [searchQuery]);
+
   useEffect(() => {
     const debounceFetch = setTimeout(fetchProducts, 300);
     return () => clearTimeout(debounceFetch);
   }, [fetchProducts]);
   const handleSelect = (title: string) => {
-    setSearchQuery(title);
+    setSearchQuery("");
+    router.push(`/search/${title}`);
     setIsDropdownOpen(false);
-    router.push(`/deals/${title}`);
   };
+
   return (
     <div className="flex items-center min-w-20 lg:w-2/4 relative">
       <IoSearchSharp className="-mr-7 z-10" size={20} />
