@@ -112,9 +112,9 @@ function Footer() {
   return (
     <>
       <div className="bg-[#edeff1]">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center py-10">
+        <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row  justify-between items-center py-10">
           <div className="text-2xl text-blue-700 font-bold">Frontend Task</div>
-          <div className="flex flex-col">
+          <div className="flex flex-col text-center lg:text-start">
             <div className="text-lg font-bold">Follow Us</div>
             <div className="flex gap-7 mt-5">
               <FaFacebook size={24} />
@@ -125,7 +125,7 @@ function Footer() {
           </div>
         </div>
         <div className="max-w-7xl border-t pt-5 mx-auto w-full flex justify-between items-center py-10">
-          <div className="flex w-full justify-between">
+          <div className="flex flex-col lg:flex-row w-full text-center gap-y-5 lg:justify-between">
             {footerSections.map((section, index) => (
               <div key={index}>
                 <h3 className="font-semibold text-lg mb-2">{section.title}</h3>
@@ -138,8 +138,8 @@ function Footer() {
                 </ul>
               </div>
             ))}
-            <div className="flex flex-col w-1/4">
-              <h2 className="text-lg font-bold mb-4">Quick Links</h2>
+            <div className="flex flex-col w-full lg:w-1/4">
+              <h2 className="text-lg text-center font-bold mb-4">Quick Links</h2>
               <Accordion.Root
                 className="AccordionRoot"
                 type="single"
@@ -148,11 +148,11 @@ function Footer() {
               >
                 {accordionSections.map((section, index) => (
                   <Accordion.Item className="AccordionItem" value={`item-${index}`} key={index}>
-                    <AccordionTrigger className="AccordionTrigger flex justify-between items-center w-full">
+                    <AccordionTrigger className="AccordionTrigger flex max-w-52 min-w-52 mx-auto justify-between items-center w-full">
                       <div className="!text-sm">{section.title}</div>
                       <FaChevronDown className="AccordionChevron" />
                     </AccordionTrigger>
-                    <AccordionContent className="mt-5 ml-5 space-y-2 text-sm">
+                    <AccordionContent className="mt-5 ml-0 lg:ml-5 space-y-2 text-sm">
                       <ul>
                         {section.items.map((item, itemIndex) => (
                           <li key={itemIndex} className="text-gray-600 hover:text-gray-800 mb-1">
@@ -168,7 +168,7 @@ function Footer() {
           </div>
         </div>
         <div className="bg-white py-8">
-          <div className="flex justify-center gap-2">
+          <div className="flex flex-col lg:flex-row text-center justify-center gap-2">
             {footerLinks.map((link, index) => (
               <div key={index} className="text-xs text-gray-600 hover:text-gray-800">
                 {link}
