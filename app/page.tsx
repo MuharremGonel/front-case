@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <div className="max-w-7xl py-20 mx-auto flex gap-5">
-        <div className="w-1/4">
+        <div className="max-w-xs w-full hidden xl:block">
           <Sidebar />
         </div>
         <div className="w-full">
